@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  dinecloud_server_usermanagement:
+    image: rectangletechnologies/dinecloud_server_usermanagement:latest
+    ports:
+      - "4000:4000"
+    env_file: ../DineCloud-Server-UserManagement/.envDev
+    container_name: dinecloud_server_usermanagement
+    mem_limit: 256m
+    cpus: 0.5
+    networks:
+      - dinecloud_network
+
+  dinecloud_server_domainmodel:
+    image: rectangletechnologies/dinecloud_server_domainmodel:latest
+    ports:
+      - "6000:6000"
+    env_file: ../DineCloud-Server-DomainModel/.envDev
+    container_name: dinecloud_server_domainmodel
+    mem_limit: 256m
+    cpus: 0.5
+    networks:
+      - dinecloud_network
+
+networks:
+  dinecloud_network:
+    driver: bridge
